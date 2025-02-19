@@ -1,0 +1,9 @@
+[project]
+name = "spawner"
+version = "0.1.0"
+description = "Simple app generating logs"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "requests>=2.32.3",
+]
