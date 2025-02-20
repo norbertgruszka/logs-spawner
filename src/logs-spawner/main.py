@@ -2,6 +2,7 @@ import os
 import logging
 from loki_logger import LokiHandler
 import asyncio
+import random
 
 username = os.getenv("LOKI_USERNAME", "")
 password = os.getenv("LOKI_PASSWORD", "")
@@ -26,21 +27,21 @@ async def heartbeat():
 
 async def error():
     while True:
-        await asyncio.sleep(360)
+        await asyncio.sleep(random.randint(60, 360))
         log_loki.error(f"Unexpected error")
 
 async def info():
     while True:
-        await asyncio.sleep(60)
+        await asyncio.sleep(random.randint(5, 60))
         log_loki.info(f"Just an info, in case you care...")
 
 async def debug():
     while True:
-        await asyncio.sleep(30)
+        await asyncio.sleep(random.randint(5, 120))
         log_loki.debug(f"Low level info")
 
 async def main():
-    print("Starting the App...")
+    print(f"Starting the App {app_name}...")
     await asyncio.gather(heartbeat(), error(), info(), debug())
 
 if __name__ == "__main__":
